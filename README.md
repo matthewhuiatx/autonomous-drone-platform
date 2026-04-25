@@ -1,4 +1,3 @@
-Copy/paste this as your new `README.md`:
 
 ````md
 # Autonomous Drone Platform
