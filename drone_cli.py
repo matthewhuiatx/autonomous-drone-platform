@@ -5,6 +5,7 @@ from drone_controller import (
     goto,
     return_home,
     land,
+    run_mission,
     status,
     close,
 )
@@ -16,8 +17,9 @@ def print_commands():
     print("\nCommands:")
     print("  takeoff <altitude in m>")
     print("  goto <lat> <lon> <altitude in m>")
+    print("  mission <takeoff_altitude> <lat> <lon> <waypoint_altitude>")
     print("  home")
-    print("  home <altitude>")
+    print("  home <altitude in m>")
     print("  land")
     print("  status")
     print("  exit")
@@ -49,6 +51,16 @@ def main():
                 lon = float(command[2])
                 altitude = float(command[3])
                 goto(vehicle, lat, lon, altitude)
+                time.sleep(2)
+                print_commands()
+
+            elif action == "mission":
+                takeoff_altitude = float(command[1])
+                lat = float(command[2])
+                lon = float(command[3])
+                waypoint_altitude = float(command[4])
+
+                run_mission(vehicle, takeoff_altitude, lat, lon, waypoint_altitude)
                 time.sleep(2)
                 print_commands()
 
@@ -92,3 +104,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

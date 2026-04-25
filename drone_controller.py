@@ -19,7 +19,7 @@ def connect_drone(connection_string="udp:127.0.0.1:14550"):
     while vehicle.location.global_relative_frame.lat is None:
         time.sleep(1)
 
-    time.sleep(10)
+    time.sleep(25)
     print("Position estimate should be ready")
 
     return vehicle
@@ -102,9 +102,27 @@ def goto(vehicle, lat, lon, altitude):
 
 
 def return_home(vehicle, home_location, altitude=10):
+    if not vehicle.armed:
+        print("Drone is landed. Taking off before returning home.")
+        takeoff(vehicle, altitude)
+
+    else:
+        current_altitude = vehicle.location.global_relative_frame.alt
+
+        if current_altitude < altitude * 0.8:
+            print(f"Climbing to return-home altitude ({altitude}m)")
+            goto(
+                vehicle,
+                vehicle.location.global_relative_frame.lat,
+                vehicle.location.global_relative_frame.lon,
+                altitude
+            )
+
     print(f"Returning home: lat={home_location.lat}, lon={home_location.lon}, alt={altitude}")
     goto(vehicle, home_location.lat, home_location.lon, altitude)
+
     print("Arrived home")
+    print("Drone is holding position above home")
 
 
 def land(vehicle):
@@ -126,6 +144,18 @@ def land(vehicle):
         time.sleep(1)
 
 
+def run_mission(vehicle, takeoff_altitude, waypoint_lat, waypoint_lon, waypoint_altitude):
+    print("Mission started")
+
+    takeoff(vehicle, takeoff_altitude)
+
+    print("Navigating to mission waypoint")
+    goto(vehicle, waypoint_lat, waypoint_lon, waypoint_altitude)
+
+    print("Mission waypoint reached")
+    print("Drone is holding position at waypoint")
+
+
 def status(vehicle):
     location = vehicle.location.global_relative_frame
 
@@ -139,3 +169,4 @@ def status(vehicle):
 def close(vehicle):
     vehicle.close()
     print("Connection closed")
+    
