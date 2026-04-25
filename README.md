@@ -1,5 +1,3 @@
-
-````md
 # Autonomous Drone Platform
 
 **A Python-based command-line system for controlling an autonomous drone using ArduPilot SITL, DroneKit, and MAVLink.**
@@ -7,23 +5,24 @@
 This project simulates a full drone control pipeline, allowing **programmatic control of a virtual quadcopter in real time**.
 
 The current version supports:
-- interactive mission execution  
-- GPS waypoint navigation  
-- return-to-home behavior  
-- autonomous landing  
-- real-time vehicle status monitoring  
+
+- Interactive mission execution
+- GPS waypoint navigation
+- Return-to-home behavior
+- Autonomous landing
+- Real-time vehicle status monitoring
 
 ---
 
 ## Features
 
-- **ArduCopter SITL integration** via MAVLink  
-- **Home position tracking** (saved at startup)  
-- **Autonomous takeoff** to user-defined altitude  
-- **GPS waypoint navigation**  
-- **Mission command execution**  
-- **Return-to-home (hover behavior)**  
-- **Autonomous landing with completion detection**  
+- **ArduCopter SITL integration** via MAVLink
+- **Home position tracking** saved at startup
+- **Autonomous takeoff** to user-defined altitude
+- **GPS waypoint navigation**
+- **Mission command execution**
+- **Return-to-home hover behavior**
+- **Autonomous landing with completion detection**
 - **Real-time vehicle telemetry and status output**
 
 ---
@@ -33,18 +32,16 @@ The current version supports:
 ```text
 User CLI Input
       ↓
-Python Controller (drone_controller.py)
+Python Controller
       ↓
 DroneKit API
       ↓
 MAVLink Protocol
       ↓
-ArduPilot (ArduCopter SITL)
+ArduPilot / ArduCopter SITL
       ↓
 Simulated Drone
 ````
-
----
 
 ## Commands
 
@@ -58,8 +55,6 @@ Simulated Drone
 | `land`                                                       | Lands at the current location                                             |
 | `status`                                                     | Displays current flight state                                             |
 | `exit`                                                       | Closes the drone connection                                               |
-
----
 
 ## Demo Flow
 
@@ -77,8 +72,6 @@ This commands the simulated drone to:
 4. return home when commanded
 5. land when commanded
 
----
-
 ## Tech Stack
 
 * Python
@@ -86,8 +79,6 @@ This commands the simulated drone to:
 * MAVLink
 * ArduPilot / ArduCopter SITL
 * WSL / Ubuntu
-
----
 
 ## How to Run
 
@@ -111,8 +102,6 @@ Example:
 mission 10 -35.3635 149.1650 10
 ```
 
----
-
 ## Why This Project
 
 This project explores how software systems interface with autonomous hardware through real-time communication protocols like **MAVLink**.
@@ -120,11 +109,9 @@ This project explores how software systems interface with autonomous hardware th
 It focuses on building a reusable control layer that can be extended into:
 
 * UI-driven mission control
-* multi-waypoint planning
-* autonomous navigation systems
-* real-world drone integration
-
----
+* Multi-waypoint planning
+* Autonomous navigation systems
+* Real-world drone integration
 
 ## Roadmap
 
@@ -141,6 +128,4 @@ It focuses on building a reusable control layer that can be extended into:
 * [ ] Real drone integration
 
 ```
-
-That alone makes your project stand out way more than text.
 ```
